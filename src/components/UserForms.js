@@ -27,11 +27,7 @@ export class UserForms extends Component {
     
 
      
-    emailErorDisplay =()=>{
-       this.setState({
-          emailEror :"invalid email" 
-       });
-    }
+    
 
     
 
@@ -53,23 +49,68 @@ export class UserForms extends Component {
         });
     }
 
-    handleChange = input => e => {
-        this.setState({
-           [input]: e.target.value 
-           
-           
-           
-        }, ()=>{
-            if(!this.state.email.includes('@')){
-                this.setState({
-                   emailEror : "invalid email"
-                });
-            }
-        });
-      
-    }
+    handleChange = input => event => {
+         
+        let value = event.target.value ;
+        let name  = event.target.name;
+         this.setState({
+            [input]: event.target.value
+        
+         },()=>{
 
-    
+            this.validateFields(name,value);
+
+
+         });
+   }
+
+
+    validateFields(fieldName,value){
+        var regex = /^\w+@\w+\.\w{2,3}$/;
+        switch(fieldName){
+            case 'firstName':
+                if(value.length < 5){
+                    this.setState({
+                        firstNameEror : 'name shl be 5>'   
+                    })
+                }else{
+                    this.setState({
+                        firstNameEror : ''   
+                    }) 
+                }
+                break
+            case 'lastName' :
+                if(value.length<6){
+                    this.setState({
+                        lastNameEror:'enter last name greathe with atleast 5 letters'
+                    })
+                }  
+                else{
+                    this.setState({
+                        lastNameEror:''
+                    })
+                } 
+                break
+
+                case 'email':
+                    if(!regex.test(value)){
+                      this.setState({
+                          emailEror : 'invalid email'
+                      })
+                    }
+                    else{
+                        this.setState({
+                            emailEror : ''
+                        })
+                    }
+                break; 
+            default:
+                 
+        }
+    }    
+            
+        
+        
 
     render() {
        const {step} = this.state ;
@@ -82,7 +123,7 @@ export class UserForms extends Component {
                     nextStep = { this.nextStep}
                     handleChange = {this.handleChange}
                     value = {value}
-                    emailErorDisplay = {this.emailErorDisplay}
+                    
                     
                     />
                 )

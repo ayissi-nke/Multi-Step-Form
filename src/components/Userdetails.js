@@ -27,7 +27,8 @@ export class Userdetails extends Component {
                     <TextField hintText='Ente your First Name'
                        floatingLabelText="First Name"
                        onChange={handleChange('firstName')} 
-                       defaultValue= {value.firstName}
+                       Value= {value.firstName}
+                       name="firstName"
                        />
                        <br/>
                        <div>{value.firstNameEror}</div>
@@ -35,16 +36,18 @@ export class Userdetails extends Component {
                        <br/>
                        <TextField hintText='Ente your Last Name'
                        floatingLabelText="Last Name"
-                       onChange={handleChange('lastName')} 
-                       defaultValue={value.lastName}/>
+                       onChange={handleChange('LastName')} 
+                       Value={value.lastName}
+                       name="lastName"
+                       />
                        <br/>
                        <div>{value.lastNameEror}</div>
                        <br/>
                        <TextField hintText='Ente your Email'
                        floatingLabelText="Email"
                        onChange={handleChange('email')}
-                       defaultValue={value.email}
-                       
+                       Value={value.email}
+                       name="email"
                        />
                        <br/>
                        <div>{value.emailEror}</div>
